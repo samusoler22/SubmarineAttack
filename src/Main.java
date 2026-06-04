@@ -10,5 +10,13 @@ public class Main {
         System.out.println(Controller.getSubmarino().getY());
         Controller.moverSubmarinoVertical();
         System.out.println(Controller.getSubmarino().getY());
+
+        Partida partida = new Partida();
+        System.out.println(partida.toView().getPuntos());
+        partida.sumarPuntos(200);
+        System.out.println(partida.toView().getPuntos());
+
+        System.out.println("------------");
+        System.out.println( Controller.getSubmarino().getVida());
     }
 }

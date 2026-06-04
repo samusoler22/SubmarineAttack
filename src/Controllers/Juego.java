@@ -3,6 +3,7 @@ package Controllers;
 import Models.*;
 import Views.*;
 
+            /*CONTROLADOR*/
 public class Juego {
 
     private static Juego instancia;
