@@ -14,15 +14,36 @@ public class Serie {
     private List<Barco> barcos;
     private boolean     completa;
     private int         barcosActivos;
+    private int         velocidadBarco;
+    private int         velocidadCaidaProyectil;
+    private int         posicionInicioXBarco;
+    private int         posicionInicioYBarco;
 
     // constructor
     public Serie() {
         this.barcos        = new ArrayList<>();
         this.completa      = false;
         this.barcosActivos = 0;
+        this.velocidadBarco = 1;
+        this.velocidadCaidaProyectil = 1;
+        this.posicionInicioYBarco = 0;
     }
 
+    private void aumentosVelocidad() {
+        this.velocidadBarco = (int) (this.velocidadBarco * 1.2);
+        this.velocidadCaidaProyectil = (int) (this.velocidadCaidaProyectil * 1.2);
+    }
 
+    private void seleccionarPosicionInicioBarco() {
+        Random random = new Random();
+        int lado = random.nextInt(2);
+        if (lado == 0) {
+            this.posicionInicioXBarco = 0;
+        } else {
+            this.posicionInicioXBarco = 400;
+        }
+    }
+    
     /*
      * Agrega un nuevo barco a la serie si no alcanza el límite de activos ni el total.
      */
@@ -36,7 +57,7 @@ public class Serie {
             return;
         }
 
-        Barco nuevoBarco = new Barco();
+        Barco nuevoBarco = new Barco(int velocidadBarco, int posicionInicioXBarco, int posicionInicioYBarco, int velocidadCaidaProyectil);
         barcos.add(nuevoBarco);
         barcosActivos++;
         System.out.println("Serie: ship added. Active=" + barcosActivos
@@ -90,9 +111,15 @@ public class Serie {
      * pone barcosActivos en 0 y completa en false.
      */
     public void reiniciarSerie() {
+        /*
+         * Quizas haya que mover la posicion de los barcos en la lista fuera de vista
+         * antes de limpiarla para que no queden colgados.
+         * Definir cuando se agregue las vistas y ver como se comporta.
+         */
         this.barcos.clear();
         this.barcosActivos = 0;
         this.completa      = false;
+        aumentosVelocidad();
         System.out.println("Serie: series reset.");
     }
 

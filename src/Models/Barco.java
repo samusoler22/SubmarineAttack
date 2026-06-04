@@ -10,6 +10,7 @@ public class Barco extends Embarcacion {
 
     // Lista para almacenar y gestionar el inventario de las cargas que lanza este barco
     private List<CargaDeProfundidad> cargas;
+    private int velocidadCaidaCarga;
 
     // Constantes con los limites de profundidad
     private final int PROFUNDIDAD_EXPLOSION_MIN = 300;
@@ -18,12 +19,13 @@ public class Barco extends Embarcacion {
     private final int ALTO_BARCO = 30;
 
     // Constructor del Barco
-    public Barco(int velocidad, int posicionX, int posicionY) {
+    public Barco(int velocidad, int posicionX, int posicionY, int velocidadCaidaCarga) {
         // 'super' invoca obligatoriamente al constructor de la clase padre (Embarcacion)
         // para inicializar los atributos heredados
         super(velocidad, posicionX, posicionY);
         this.ancho = ANCHO_BARCO;
         this.alto = ALTO_BARCO;
+        this.velocidadCaidaCarga = velocidadCaidaCarga;
         this.cargas = new ArrayList<>();
     }
 
@@ -40,10 +42,6 @@ public class Barco extends Embarcacion {
 
     // Metodo privado que fabrica y lanza el proyectil al agua
     private CargaDeProfundidad DispararCargaDeProfundidad(int profundidadDetonacion) {
-        // Se define una velocidad de caida fija para la carga.
-        // El UML no dice de cuanto debe ser, asi que le asignamos 10.
-        int velocidadCaidaCarga = 10;
-
         // Instancia el objeto CargaDeProfundidad pasandole la posicion X del barco,
         // para simular que la carga cae exactamente desde donde esta navegando.
         CargaDeProfundidad nuevaCarga = new CargaDeProfundidad(this.posicionX, this.posicionY+this.alto, velocidadCaidaCarga, profundidadDetonacion);
@@ -53,8 +51,10 @@ public class Barco extends Embarcacion {
 
         return nuevaCarga;
     }
-
+    
     public List<CargaDeProfundidad> getCargas() { return this.cargas; }
+    public int getVelocidadCaidaCarga() { return this.velocidadCaidaCarga; }
+    public void setVelocidadCaidaCarga(int velocidadCaidaCarga) { this.velocidadCaidaCarga = velocidadCaidaCarga; }
 
     @Override
     public BarcoView toView() {

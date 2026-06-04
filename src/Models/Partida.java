@@ -29,10 +29,6 @@ public class Partida {
         }
     }
 
-    public void resetearSubmarino() {
-        this.submarino = new Submarino(5, 0, 300);
-    }
-
     private void incrementarPuntos(int puntosGanados) {
         this.puntos += puntosGanados;
     }
