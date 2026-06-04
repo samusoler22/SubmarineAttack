@@ -3,7 +3,7 @@ package Models;
 import Views.SerieView;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Random;
 public class Serie {
 
     // constantes
@@ -57,7 +57,7 @@ public class Serie {
             return;
         }
 
-        Barco nuevoBarco = new Barco(int velocidadBarco, int posicionInicioXBarco, int posicionInicioYBarco, int velocidadCaidaProyectil);
+        Barco nuevoBarco = new Barco(velocidadBarco,posicionInicioXBarco, posicionInicioYBarco,velocidadCaidaProyectil);
         barcos.add(nuevoBarco);
         barcosActivos++;
         System.out.println("Serie: ship added. Active=" + barcosActivos

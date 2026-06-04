@@ -6,13 +6,11 @@ public class Partida {
 
     private int vidas;
     private int puntos;
-    private Submarino submarino;
     public Nivel nivel;
 
     public Partida() {
         this.vidas = 3;
         this.puntos = 0;
-        this.submarino = new Submarino(5, 0, 300);
         this.nivel = new Nivel();
     }
 
@@ -35,7 +33,6 @@ public class Partida {
 
     public int getVidas()           { return vidas; }
     public int getPuntos()          { return puntos; }
-    public Submarino getSubmarino() { return submarino; }
 
     public PartidaView toView() {
         return new PartidaView(this.vidas, this.puntos, this.nivel.getNumeroNivel());

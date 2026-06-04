@@ -13,6 +13,8 @@ public class SubmarinoView extends EmbarcacionView {
 
     public SubmarinoView() {}
 
+    public int getPosicionX()   { return getX(); }
+    public int getPosicionY()   { return getY(); }
     public int getVida()        { return vida; }
     public int getVidaMaxima()  { return vidaMaxima; }
 }

@@ -19,7 +19,7 @@ public class Nivel {
         return true;
     }
 
-    public int getNumeroNivel()              { return this.numeroNivel; }
+    public int getNumeroNivel() { return this.numeroNivel; }
 
     public NivelView toView() {
         return new NivelView(this.numeroNivel);

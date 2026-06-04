@@ -20,9 +20,9 @@ public class Submarino extends Embarcacion {
         this.alto = 25;
     }
     // Método para moverse verticalmente en el agua
-    public void movimientoVertical(int cantidad) {
+    public void movimientoVertical() {
         // Calculamos a que profundidad quedaria
-        int nuevaPosicion = this.posicionY + cantidad;
+        int nuevaPosicion = this.posicionY + this.velocidad;
 
         // Controlamos los limites que pide la consigna (entre 300 y 800 metros)
         if (nuevaPosicion >= PROFUNDIDAD_MINIMA && nuevaPosicion <= PROFUNDIDAD_MAXIMA) {
