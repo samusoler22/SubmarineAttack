@@ -1,5 +1,6 @@
 package Models;
 
+import Views.SerieView;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,16 +50,16 @@ public class Serie {
      */
     public boolean serieCompleta() {
         if (barcos.size() < TOTAL_BARCOS_SERIE) {
-            completa = false;
+            this.completa = false;
             return false;
         }
         for (Barco b : barcos) {
             if (b.estaVivo()) {
-                completa = false;
+                this.completa = false;
                 return false;
             }
         }
-        completa = true;
+        this.completa = true;
         return true;
     }
 
@@ -89,9 +90,9 @@ public class Serie {
      * pone barcosActivos en 0 y completa en false.
      */
     public void reiniciarSerie() {
-        barcos.clear();
-        barcosActivos = 0;
-        completa      = false;
+        this.barcos.clear();
+        this.barcosActivos = 0;
+        this.completa      = false;
         System.out.println("Serie: series reset.");
     }
 
@@ -103,4 +104,10 @@ public class Serie {
 
     public static int getCapacidadMaxima()   { return CAPACIDAD_MAXIMA; }
     public static int getTotalBarcosSerie()  { return TOTAL_BARCOS_SERIE; }
+
+    
+    public SerieView toView() {
+        return new SerieView(this.barcosActivos, this.completa, this.barcos.size(), CAPACIDAD_MAXIMA, TOTAL_BARCOS_SERIE);
+    }
+
 }

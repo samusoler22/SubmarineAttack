@@ -1,5 +1,7 @@
 package Models;
 
+import Views.CargaDeProfundidadView;
+
 public class CargaDeProfundidad {
 
     // Atributos privados para respetar el principio de encapsulamiento.
@@ -10,20 +12,20 @@ public class CargaDeProfundidad {
     private int velocidadCaida;
     private boolean exploto;
     private int profundidadDetonacion;
+    private final int ancho = 15;
+    private final int alto  = 20;
 
     // Constantes con los limites de profundidad para la explosion
     private final int PROFUNDIDAD_EXPLOSION_MIN = 300;
     private final int PROFUNDIDAD_EXPLOSION_MAX = 700;
 
     // Constructor: se ejecuta automaticamente cuando el Barco crea una nueva carga
-    public CargaDeProfundidad(int posicionX, int velocidadCaida, int profundidadDetonacion) {
+    public CargaDeProfundidad(int posicionX, int posicionY, int velocidadCaida, int profundidadDetonacion) {
         this.posicionX = posicionX;
+        this.posicionY = posicionY;
         this.velocidadCaida = velocidadCaida;
         this.profundidadDetonacion = profundidadDetonacion;
 
-        // Valores iniciales por defecto estipulados en el requerimiento UML.
-        // La carga siempre empieza en la superficie del agua.
-        this.posicionY = 0;
         // La carga se crea intacta, por lo tanto no exploto todavia.
         this.exploto = false;
     }
@@ -42,18 +44,15 @@ public class CargaDeProfundidad {
         }
     }
 
-    // Getters: son publicos y necesarios para que la clase Submarino pueda leer la ubicacion
-    public int getPosicionX() {
-        return this.posicionX;
-    }
+    public int getPosicionX()              { return this.posicionX; }
+    public int getPosicionY()              { return this.posicionY; }
+    public boolean isExploto()             { return this.exploto; }
+    public int getVelocidadCaida()         { return this.velocidadCaida; }
+    public int getProfundidadDetonacion()  { return this.profundidadDetonacion; }
+    public int getAncho()                  { return this.ancho; }
+    public int getAlto()                   { return this.alto; }
 
-    // Se utiliza la Y mayuscula (getPosicionY) para asegurar la compatibilidad con el codigo de tu companero
-    public int getPosicionY() {
-        return this.posicionY;
-    }
-
-    // Getter adicional recomendado para consultar desde afuera si la carga ya exploto
-    public boolean isExploto() {
-        return this.exploto;
+    public CargaDeProfundidadView toView() {
+        return new CargaDeProfundidadView(this.posicionX, this.posicionY, this.ancho, this.alto, this.exploto, this.profundidadDetonacion);
     }
 }

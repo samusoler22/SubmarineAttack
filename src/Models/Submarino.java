@@ -1,5 +1,7 @@
 package Models;
 
+import Views.SubmarinoView;
+
 public class Submarino extends Embarcacion {
     // Atributos especificos del submarino
     private int vida;
@@ -13,7 +15,9 @@ public class Submarino extends Embarcacion {
     public Submarino(int velocidad, int posicionX, int posicionY) {
         // "super" invoca al constructor de Embarcacion para inicializar la velocidad y posiciones
         super(velocidad, posicionX, posicionY);
-        this.vida = VIDA_MAXIMA; // El submarino arranca con 100 de vida
+        this.vida = VIDA_MAXIMA;
+        this.ancho = 60;
+        this.alto = 25;
     }
     // Método para moverse verticalmente en el agua
     public void movimientoVertical(int cantidad) {
@@ -51,7 +55,15 @@ public class Submarino extends Embarcacion {
             return VIDA_MAXIMA; // Menos de 10m: Se pierde una vida (100% de daño)
         }
     }
-    // Metodo que calcula la distancia matematica entre el submarino y una carga
+    public int getVida() { return this.vida; }
+
+    public int getVidaMaxima() { return VIDA_MAXIMA; }
+
+    @Override
+    public SubmarinoView toView() {
+        return new SubmarinoView(this.posicionX, this.posicionY, this.ancho, this.alto, this.vivo, this.vida, VIDA_MAXIMA);
+    }
+
     public int distanciaConCarga(CargaDeProfundidad carga) {
         // Formula de distancia entre dos puntos: √((x2 - x1)² + (y2 - y1)²)
         double distancia = Math.sqrt(Math.pow(this.posicionX - carga.getPosicionX(), 2) + Math.pow(this.posicionY - carga.getPosicionY(), 2));

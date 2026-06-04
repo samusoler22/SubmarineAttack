@@ -1,5 +1,6 @@
 package Models;
 
+import Views.BarcoView;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,15 +14,16 @@ public class Barco extends Embarcacion {
     // Constantes con los limites de profundidad
     private final int PROFUNDIDAD_EXPLOSION_MIN = 300;
     private final int PROFUNDIDAD_EXPLOSION_MAX = 700;
+    private final int ANCHO_BARCO = 80;
+    private final int ALTO_BARCO = 30;
 
     // Constructor del Barco
     public Barco(int velocidad, int posicionX, int posicionY) {
         // 'super' invoca obligatoriamente al constructor de la clase padre (Embarcacion)
         // para inicializar los atributos heredados
         super(velocidad, posicionX, posicionY);
-
-        // Es fundamental inicializar la lista vacia.
-        // Si no se hace, dara un error 'NullPointerException' al querer agregar la primera carga.
+        this.ancho = ANCHO_BARCO;
+        this.alto = ALTO_BARCO;
         this.cargas = new ArrayList<>();
     }
 
@@ -39,18 +41,24 @@ public class Barco extends Embarcacion {
     // Metodo privado que fabrica y lanza el proyectil al agua
     private CargaDeProfundidad DispararCargaDeProfundidad(int profundidadDetonacion) {
         // Se define una velocidad de caida fija para la carga.
-        // El UML no dice de cuanto debe ser, asi que le asignamos 10 a modo de ejemplo.
+        // El UML no dice de cuanto debe ser, asi que le asignamos 10.
         int velocidadCaidaCarga = 10;
 
         // Instancia el objeto CargaDeProfundidad pasandole la posicion X del barco,
         // para simular que la carga cae exactamente desde donde esta navegando.
-        CargaDeProfundidad nuevaCarga = new CargaDeProfundidad(this.posicionX, velocidadCaidaCarga, profundidadDetonacion);
+        CargaDeProfundidad nuevaCarga = new CargaDeProfundidad(this.posicionX, this.posicionY+this.alto, velocidadCaidaCarga, profundidadDetonacion);
 
         // Guarda la carga recien creada en el registro del barco
         this.cargas.add(nuevaCarga);
 
-        // Retorna el objeto por si el programa principal necesita usarlo o mostrarlo en pantalla
         return nuevaCarga;
+    }
+
+    public List<CargaDeProfundidad> getCargas() { return this.cargas; }
+
+    @Override
+    public BarcoView toView() {
+        return new BarcoView(this.posicionX, this.posicionY, this.ancho, this.alto, this.vivo);
     }
 
 }
