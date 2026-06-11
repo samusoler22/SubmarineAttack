@@ -24,7 +24,10 @@ public abstract class Embarcacion {
     public int getAncho()      { return this.ancho; }
     public int getAlto()       { return this.alto; }
 
-    public void moviemientoHorizontal() {
+    public void moverIzquierda(){
+        this.posicionX -= this.velocidad;
+    }
+    public void moverDerecha(){
         this.posicionX += this.velocidad;
     }
 

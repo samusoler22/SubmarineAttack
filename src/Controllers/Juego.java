@@ -3,7 +3,6 @@ package Controllers;
 import Models.*;
 import Views.*;
 
-            /*CONTROLADOR*/
 public class Juego {
 
     private static Juego instancia;
@@ -24,8 +23,8 @@ public class Juego {
 
     public void moverSubmarinoVertical() {
         submarino.movimientoVertical();
-
     }
+
     public void moverSubmarinoHorizontal(){
         submarino.moviemientoHorizontal();
     }

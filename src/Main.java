@@ -13,10 +13,11 @@ public class Main {
 
         Partida partida = new Partida();
         System.out.println(partida.toView().getPuntos());
-        partida.sumarPuntos(200);
+        partida.sumarPuntos(201);
         System.out.println(partida.toView().getPuntos());
 
         System.out.println("------------");
-        System.out.println( Controller.getSubmarino().getVida());
+
+
     }
 }
