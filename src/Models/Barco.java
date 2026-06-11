@@ -19,7 +19,6 @@ public class Barco extends Embarcacion {
     public final int posicionInicioX;
 
     public Barco(int velocidad, int posicionX, int posicionY, int velocidadCaidaCarga) {
-        super(velocidad, posicionX, posicionY);
         this.ancho = ANCHO_BARCO;
         this.alto = ALTO_BARCO;
         this.velocidadCaidaCarga = velocidadCaidaCarga;

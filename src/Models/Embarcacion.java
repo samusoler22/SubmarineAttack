@@ -10,13 +10,6 @@ public abstract class Embarcacion {
     protected int ancho;
     protected int alto;
 
-    public Embarcacion(int velocidad, int posicionX, int posicionY) {
-        this.vivo = true;
-        this.velocidad = velocidad;
-        this.posicionX = posicionX;
-        this.posicionY = posicionY;
-    }
-
     public boolean estaVivo()  { return this.vivo; }
     public int getPosicionX()  { return this.posicionX; }
     public int getPosicionY()  { return this.posicionY; }

@@ -19,6 +19,11 @@ public class Submarino extends Embarcacion {
         this.alto = 25;
     }
 
+    public void revivir(){
+        this.vivo = true;
+        this.vida = VIDA_MAXIMA;
+    }
+
     public void moverArriba(){
         int nuevaPosicion = this.posicionY - this.velocidad;
         if (nuevaPosicion >= PROFUNDIDAD_MINIMA) {
